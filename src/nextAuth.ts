@@ -20,11 +20,15 @@ export const nextAuth = NextAuth({
         error: "/error"
     },
     callbacks: {
-        jwt({ token, user, account, profile }) {
+        jwt({ token, user, account, profile, trigger, session }) {
             if (user) {
                 token.accessToken = account!!.access_token
                 token.role = (user as any).role
                 token.id = user.id
+            }
+            if (trigger === "update" && session?.name) {
+                // Note, that `session` can be any arbitrary object, remember to validate it!
+                token.name = session
             }
             return token
         },
