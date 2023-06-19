@@ -2,24 +2,23 @@
 
 import { get } from "@/hooks/fetchers";
 import { Badge, Button, Col, Container, Loading, Row, Table, Text, User, useTheme } from "@nextui-org/react";
-import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import { MdDelete } from "react-icons/md";
-import axios from "axios";
 import { axiosClient } from "@/axios";
 
 
 export default function AdminUsersPage() {
 	console.log("BASE URL:", process.env.NEXT_PUBLIC_BASE_URL);
-	const session = useSession();
 	const users = useSWR("/protected/admin/user/getAll", get);
 	const { theme } = useTheme();
 
-	if (session.status != "authenticated") return <></>;
 
-
-	if (users.error) return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>;
-	if (users.isLoading) return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>;
+	if (users.error) {
+		return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>;
+	}
+	if (users.isLoading) {
+		return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>;
+	}
 	if (users.isValidating) {
 		return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>;
 	}

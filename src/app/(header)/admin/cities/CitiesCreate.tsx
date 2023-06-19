@@ -1,11 +1,8 @@
 "use client";
 
-import LoadingPage from "@/app/loading/page";
 import { axiosClient } from "@/axios";
-import { get } from "@/hooks/fetchers";
 import { Button, Col, Container, Input, Row, Spacer, Table, Text } from "@nextui-org/react";
 import { useState } from "react";
-import useSWR from "swr";
 
 
 export default function CitiesCreate() {
