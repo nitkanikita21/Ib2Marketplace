@@ -4,11 +4,11 @@ import { getSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request, { params }: { params: { id: string } }) {
-    const city = await prisma.city.delete({
-        where: {
-            id: params.id
-        }
-    });
+	const city = await prisma.city.delete({
+		"where": {
+			"id": params.id
+		}
+	});
 
-    return NextResponse.json(city)
+	return NextResponse.json(city);
 }
