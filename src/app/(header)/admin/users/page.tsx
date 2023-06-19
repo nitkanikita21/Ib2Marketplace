@@ -13,14 +13,14 @@ export default function AdminUsersPage() {
     const session = useSession()
     const users = useSWR("/protected/admin/user/getAll", get)
     const { theme } = useTheme();
-    
+
     if (session.status != "authenticated") return <></>
     console.log(axiosClient.getUri())
 
-    if (users.error) return <Loading></Loading>
-    if (users.isLoading) return <Loading></Loading>
+    if (users.error) return  <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>
+    if (users.isLoading) return  <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>
     if (users.isValidating) {
-        return <Loading></Loading>
+        return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>
     }
 
     console.log(users.data)
