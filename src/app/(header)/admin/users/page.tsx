@@ -43,6 +43,7 @@ export default function AdminUsersPage() {
         axiosClient.post(`/protected/admin/user/${id}/delete`)
     }
 
+    console.log(users.data)
     return <>
         <Container gap={15}>
             <Table>
@@ -54,7 +55,7 @@ export default function AdminUsersPage() {
                 </Table.Header>
                 <Table.Body>
                     {
-                        (users.data as any[]).map((e: any) => {
+                        users.data.map((e: any, i: number) => {
                             return <Table.Row key={e.id}>
                                 <Table.Cell>
                                     <Text>{e.id}</Text>
