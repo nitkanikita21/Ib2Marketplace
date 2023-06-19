@@ -17,7 +17,7 @@ export default function AdminCitiesPage() {
                 <Collapse title="Створення міста">
                     <CitiesCreate></CitiesCreate>
                 </Collapse>
-                <Collapse title="Список міст">
+                <Collapse expanded title="Список міст">
                     <CitiesList></CitiesList>
                 </Collapse>
             </Collapse.Group>
