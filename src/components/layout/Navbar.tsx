@@ -30,10 +30,10 @@ export default function NavbarLayout() {
 						onChange={() => { themeStore.switchTheme(!themeStore.darkTheme); }}
 					/>
 				</Tooltip>
-				<AdminMenu />
 				{
 					session.status == "authenticated" ?
 						<>
+							<AdminMenu session={session.data!!} />
 							<Navbar.Item>
 								<Button flat onPress={() => { router.push("/user"); }}>{session.data.user?.name}</Button>
 							</Navbar.Item>

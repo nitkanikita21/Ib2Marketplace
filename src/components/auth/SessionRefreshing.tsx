@@ -2,8 +2,9 @@
 
 import { useSession } from "next-auth/react";
 import React, { useEffect } from "react";
+import UserValidator from "./UserValidator";
 
-export default function SessionRefreshing({ children }: {children: React.ReactNode}) {
+export default function SessionUpdater({ children }: { children: React.ReactNode }) {
 	const { "data": session, status, update } = useSession();
 
 	// Polling the session every 1 hour
@@ -11,7 +12,7 @@ export default function SessionRefreshing({ children }: {children: React.ReactNo
 		// TIP: You can also use `navigator.onLine` and some extra event handlers
 		// to check if the user is online and only update the session if they are.
 		// https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine
-		const interval = setInterval(() => update(), 1000 * 60 * 60);
+		const interval = setInterval(() => update(), 1000 * 30);
 		return () => clearInterval(interval);
 	}, [update]);
 
@@ -23,7 +24,17 @@ export default function SessionRefreshing({ children }: {children: React.ReactNo
 		return () => window.removeEventListener("visibilitychange", visibilityHandler, false);
 	}, [update]);
 
+	if (status != "authenticated") {
+		console.log("SessionUpdater: user not auth");
+		return <>
+			{children}
+		</>;
+	}
+
+	console.log("SessionUpdater: user auth");
 	return <>
-		{children}
+		<UserValidator session={session}>
+			{children}
+		</UserValidator>
 	</>;
 }

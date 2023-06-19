@@ -17,6 +17,7 @@ export declare module "next-auth" {
         user?: DefaultUser & {
             id: string;
             adress: string;
+            role: String
         };
         token: JWT;
     }

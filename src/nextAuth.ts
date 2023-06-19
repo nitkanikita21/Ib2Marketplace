@@ -34,6 +34,7 @@ export const nextAuth = NextAuth({
 		},
 		session({ session, user, token }) {
 			session.user.role = token.role;
+			session.user.id = token.id;
 			return session;
 		}
 	},
