@@ -8,7 +8,6 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 		}
 	});
 
-	console.log("User validation: ", user != null);
 
 	return NextResponse.json({ "valid": user != null });
 }

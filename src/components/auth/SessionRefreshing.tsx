@@ -33,7 +33,7 @@ export default function SessionUpdater({ children }: { children: React.ReactNode
 
 	console.log("SessionUpdater: user auth");
 	return <>
-		<UserValidator session={session}>
+		<UserValidator session={session} status={status}>
 			{children}
 		</UserValidator>
 	</>;

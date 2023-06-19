@@ -28,3 +28,4 @@ export default function AdminMenu({ session }: { session: Session }) {
 		</Dropdown.Menu>
 	</Dropdown>;
 }
+
