@@ -32,10 +32,10 @@ export default function AdminUsersPage() {
 				return <Badge color={"success"}>{role.toUpperCase()}</Badge>;
 
 			case "admin":
-				return <Badge color={"warning"}>{role.toUpperCase()}</Badge>;
+				return <Badge color={"error"}>{role.toUpperCase()}</Badge>;
 
 			default:
-				return <Badge color={"error"}>UNKNOW</Badge>;
+				return <Badge color={"warning"}>UNKNOW</Badge>;
 		}
 	}
 
