@@ -1,7 +1,7 @@
 "use client";
 
 import { get } from '@/hooks/fetchers';
-import { Badge, Button, Col, Container, Row, Table, Text, User, useTheme } from '@nextui-org/react';
+import { Badge, Button, Col, Container, Loading, Row, Table, Text, User, useTheme } from '@nextui-org/react';
 import { useSession } from 'next-auth/react';
 import useSWR from 'swr'
 import { MdDelete } from "react-icons/md";
@@ -15,7 +15,10 @@ export default function AdminUsersPage() {
     const users = useSWR("/protected/admin/user/getAll", get)
     const { theme } = useTheme();
 
-    if (users.isLoading) return <></>
+    if (users.isLoading) return <Loading></Loading>
+    if (users.isValidating) {
+        return <Loading></Loading>
+    }
 
     console.log(users.data)
 
@@ -43,6 +46,31 @@ export default function AdminUsersPage() {
         axiosClient.post(`/protected/admin/user/${id}/delete`)
     }
 
+    let body = users.data.map((e: any, i: number) => {
+        return <Table.Row key={e.id}>
+            <Table.Cell>
+                <Text>{e.id}</Text>
+            </Table.Cell>
+            <Table.Cell>
+                <User squared src={e.image} name={e.name} css={{ p: 0 }}>
+                    {e.email}
+                </User>
+            </Table.Cell>
+            <Table.Cell>
+                {getBadge(e.role)}
+            </Table.Cell>
+            <Table.Cell>
+                <Row gap={0.25}>
+                    <Col>
+                        <Button onPress={() => { deleteUser(e.id) }} auto={false} icon={<MdDelete size={24} color={theme?.colors.error.value}></MdDelete>} color="error" flat>
+                            Видалити
+                        </Button>
+                    </Col>
+                </Row>
+            </Table.Cell>
+        </Table.Row>
+    })
+
     console.log(users.data)
     return <>
         <Container gap={15}>
@@ -54,32 +82,7 @@ export default function AdminUsersPage() {
                     <Table.Column width={30}>Дії</Table.Column>
                 </Table.Header>
                 <Table.Body>
-                    {
-                        users.data.map((e: any, i: number) => {
-                            return <Table.Row key={e.id}>
-                                <Table.Cell>
-                                    <Text>{e.id}</Text>
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <User squared src={e.image} name={e.name} css={{ p: 0 }}>
-                                        {e.email}
-                                    </User>
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {getBadge(e.role)}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <Row gap={0.25}>
-                                        <Col>
-                                            <Button onPress={()=>{deleteUser(e.id)}} auto={false} icon={<MdDelete size={24} color={theme?.colors.error.value}></MdDelete>} color="error" flat>
-                                                Видалити
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </Table.Cell>
-                            </Table.Row>
-                        })
-                    }
+                    {body}
                 </Table.Body>
             </Table>
         </Container>

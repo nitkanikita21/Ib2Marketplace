@@ -12,6 +12,9 @@ export default function CitiesList() {
     if (users.isLoading) {
         return <Loading></Loading>
     }
+    if (users.isValidating) {
+        return <Loading></Loading>
+    }
     console.log("DATA", users.data)
     return <Table
         css={{
