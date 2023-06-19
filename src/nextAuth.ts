@@ -3,11 +3,12 @@ import NextAuth from "next-auth/next";
 import DiscordProvider from "next-auth/providers/discord"
 import { PrismaClient } from "@prisma/client";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { Adapter } from "next-auth/adapters";
 
 export const prisma = new PrismaClient();
 
 export const nextAuth = NextAuth({
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(prisma) as Adapter | undefined,
     providers: [
         DiscordProvider({
             clientId: process.env.DISCORD_CLIENT_ID as string,
@@ -21,8 +22,8 @@ export const nextAuth = NextAuth({
     callbacks: {
         jwt({ token, user, account, profile }) {
             if (user) {
-                token.accessToken = account.access_token
-                token.role = user.role
+                token.accessToken = account!!.access_token
+                token.role = (user as any).role
                 token.id = user.id
             }
             return token
