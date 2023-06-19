@@ -11,10 +11,11 @@ import { axiosClient } from '@/axios';
 
 export default function AdminUsersPage() {
     const session = useSession()
-    if (session.status != "authenticated") return <></>
-    console.log(axiosClient.getUri())
     const users = useSWR("/protected/admin/user/getAll", get)
     const { theme } = useTheme();
+    
+    if (session.status != "authenticated") return <></>
+    console.log(axiosClient.getUri())
 
     if (users.error) return <Loading></Loading>
     if (users.isLoading) return <Loading></Loading>
