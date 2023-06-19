@@ -1,3 +1,3 @@
-import {nextAuth} from "@/nextAuth";
+import { nextAuth } from "@/nextAuth";
 
-export { nextAuth as GET, nextAuth as POST }
+export { nextAuth as GET, nextAuth as POST };
