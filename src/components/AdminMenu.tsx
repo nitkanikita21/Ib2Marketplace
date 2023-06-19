@@ -12,7 +12,7 @@ export default function AdminMenu({ session }: { session: Session }) {
 	const user = useReactiveUser(session?.user.id);
 	const router = useRouter();
 	if (user.isLoading) return <></>;
-	console.log(user);
+	console.log("AdminMenu hook user object: ", user);
 	if (user.data.role != "admin") return <></>;
 
 
