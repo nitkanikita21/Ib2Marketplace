@@ -54,8 +54,8 @@ export default function AdminUsersPage() {
                 </Table.Header>
                 <Table.Body>
                     {
-                        users.data.map((e: any, i: number) => {
-                            return <Table.Row>
+                        (users.data as any[]).map((e: any) => {
+                            return <Table.Row key={e.id}>
                                 <Table.Cell>
                                     <Text>{e.id}</Text>
                                 </Table.Cell>
