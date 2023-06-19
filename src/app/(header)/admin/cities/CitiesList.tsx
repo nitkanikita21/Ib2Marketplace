@@ -7,15 +7,14 @@ import useSWR from 'swr'
 
 
 export default function CitiesList() {
-    const users = useSWR("/protected/admin/city/getAll", get)
+    const cities = useSWR("/protected/admin/city/getAll", get)
 
-    if (users.isLoading) {
+    if (cities.error) return <Loading></Loading>
+    if (cities.isLoading) return <Loading></Loading>
+    if (cities.isValidating) {
         return <Loading></Loading>
     }
-    if (users.isValidating) {
-        return <Loading></Loading>
-    }
-    console.log("DATA", users.data)
+    console.log("DATA", cities.data)
     return <Table
         css={{
             height: "auto",
@@ -29,7 +28,7 @@ export default function CitiesList() {
             <Table.Column>Y</Table.Column>
         </Table.Header>
         <Table.Body>
-            {users.data.map((e: any) => {
+            {cities.data.map((e: any) => {
                 return <Table.Row key={e.id}>
                     <Table.Cell>{e.id}</Table.Cell>
                     <Table.Cell>{e.name}</Table.Cell>
