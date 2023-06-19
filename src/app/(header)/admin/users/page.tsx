@@ -23,7 +23,7 @@ export default function AdminUsersPage() {
         return <Container display='flex' justify='center' alignContent='center' gap={15}><Loading></Loading></Container>
     }
 
-    console.log(users.data)
+    console.log("BASE URL:", process.env.NEXT_PUBLIC_BASE_URL)
 
     function getBadge(role: string) {
         switch (role) {
