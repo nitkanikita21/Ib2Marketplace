@@ -44,7 +44,6 @@ model User {
     role          String    @default("member") // membder, salesman, moderator, admin
     city          City?     @relation(fields: [cityId], references: [id])
     cityId        String?
-    isActive      Boolean
     Market        Market[]
     Account       Account[]
     Session       Session[]
