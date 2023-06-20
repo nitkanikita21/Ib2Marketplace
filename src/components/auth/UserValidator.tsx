@@ -11,15 +11,15 @@ export default function UserValidator({ children, session, status }: { children:
     const validator = useUserValidatorStore();
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         setInterval(() => {
             console.log("UserValidator validating");
             validator.validate();
             validator.setId(session.user.id);
         }, 500);
-    }, []),
+    }, []), */
 
-        useEffect(() => {
+        /* useEffect(() => {
             console.log("UserValidator isValid state: ", validator.isValid);
             console.log("UserValidator allow signout: ", !validator.isValid && status == "authenticated");
             setTimeout(() => {
@@ -28,7 +28,7 @@ export default function UserValidator({ children, session, status }: { children:
                 }
             }, 15000);
         }, [validator.isValid]);
-
+ */
     if (!validator.isValid) return <>
         <Container display="flex" alignContent="center" justify="center">
             <Loading>

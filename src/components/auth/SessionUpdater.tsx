@@ -12,7 +12,7 @@ export default function SessionUpdater({ children }: { children: React.ReactNode
 		// TIP: You can also use `navigator.onLine` and some extra event handlers
 		// to check if the user is online and only update the session if they are.
 		// https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine
-		const interval = setInterval(() => update(), 1000 * 30);
+		const interval = setInterval(() => update(), 1000 * 60 * 60);
 		return () => clearInterval(interval);
 	}, [update]);
 
@@ -33,8 +33,6 @@ export default function SessionUpdater({ children }: { children: React.ReactNode
 
 	console.log("SessionUpdater: user auth");
 	return <>
-		<UserValidator session={session} status={status}>
-			{children}
-		</UserValidator>
+		{children}
 	</>;
 }

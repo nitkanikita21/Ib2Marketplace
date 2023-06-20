@@ -9,12 +9,14 @@ import { AiFillShopping, AiFillTags } from "react-icons/ai";
 import { FaUsers, FaCity } from "react-icons/fa";
 
 export default function AdminMenu({ session }: { session: Session }) {
-	const user = useReactiveUser(session?.user.id);
 	const router = useRouter();
+	
+	/* const user = useReactiveUser(session?.user.id);
 	if (user.isLoading) return <></>;
 	console.log("AdminMenu hook user object: ", user);
-	if (user.data.role != "admin") return <></>;
+	if (user.data.role != "admin") return <></>; */
 
+	console.log("AdminMenu session: ", session.user);
 
 	return <Dropdown>
 		<Dropdown.Button flat color={"warning"}>Адмін меню</Dropdown.Button>

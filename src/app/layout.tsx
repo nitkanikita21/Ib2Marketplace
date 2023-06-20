@@ -1,7 +1,7 @@
 "use client";
 
 import AuthContainer from "@/components/auth/AuthContainer";
-import SessionUpdater from "@/components/auth/SessionRefreshing";
+import SessionUpdater from "@/components/auth/SessionUpdater";
 import NavbarLayout from "@/components/layout/Navbar";
 import { darkTheme, useThemeStore } from "@/components/theme";
 import { Container, CssBaseline, NextUIProvider, useTheme } from "@nextui-org/react";
