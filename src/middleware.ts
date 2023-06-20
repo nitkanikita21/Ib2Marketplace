@@ -2,7 +2,7 @@
 import withAuth from "next-auth/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
-export const config = { "matcher": ["/api/protected/:path*", "/protected/:path*", "/user/:path*", "/admin/:path*"] };
+export const config = { "matcher": ["/api/protected/:path*", "/user/:path*", "/admin/:path*"] };
 
 
 export default async function handler(req: NextRequest) {
@@ -15,9 +15,10 @@ export default async function handler(req: NextRequest) {
 	});
 	const session = await resSession.json();
 
-	console.log("SESSION: ", session);
+	console.log("SESSION AAA: ", session);
 
-	if (!session.role) {
+	if (session.user.role == undefined) {
+		console.log("redirect ", session.role);
 		return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/signIn`);
 	}
 
