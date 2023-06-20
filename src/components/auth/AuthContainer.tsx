@@ -7,7 +7,7 @@ export default function AuthContainer({ children }: {
 	return <div>
 		<SessionProvider
 			// Re-fetch session every 5 minutes
-			refetchInterval={2}
+			refetchInterval={30}
 			// Re-fetches session when window is focused
 			refetchOnWindowFocus={true}
 		>

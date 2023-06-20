@@ -2,11 +2,11 @@
 import withAuth from "next-auth/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
-export const config = { "matcher": ["/api/protected/:path*", "/protected/:path*", "/user/:path*", "/admin/"] };
+export const config = { "matcher": ["/api/protected/:path*", "/protected/:path*", "/user/:path*", "/admin/:path*"] };
 
 
 export default async function handler(req: NextRequest) {
-	const resSession = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {
+	const resSession = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/session`, {
 		"headers": {
 			"Content-Type": "application/json",
 			"Cookie": req.headers.get("cookie") || ""
@@ -17,8 +17,8 @@ export default async function handler(req: NextRequest) {
 
 	console.log("SESSION: ", session);
 
-	if (!session) {
-		return NextResponse.redirect("/signIn");
+	if (!session.role) {
+		return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/signIn`);
 	}
 
 	return NextResponse.next();

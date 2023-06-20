@@ -43,6 +43,10 @@ export default function AdminUsersPage() {
 		axiosClient.post(`/protected/admin/user/${id}/delete`);
 	}
 
+	if(!users.data[0]){
+		return <></>;
+	} 
+
 	const body = users.data.map((e: any, i: number) => <Table.Row key={e.id}>
 		<Table.Cell>
 			<Text>{e.id}</Text>

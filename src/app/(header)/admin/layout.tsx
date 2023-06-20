@@ -13,7 +13,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         if (session.data.user?.role != "admin") {
             router.push("/");
         }
-    }
+    } /* else if(session.status == "unauthenticated"){
+        router.push("/");
+    } */
 
     return <>{children}</>;
 }
