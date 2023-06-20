@@ -26,9 +26,10 @@ export const nextAuth = NextAuth({
 				token.role = (user as any).role;
 				token.id = user.id;
 			}
-			if (trigger === "update" && session?.name) {
+			if (trigger === "update") {
 				// Note, that `session` can be any arbitrary object, remember to validate it!
-				token.name = session;
+				console.log("JWT: TRIGER", trigger, "TOKEN", token, "ACCOUNT", account, "PROFILE", profile, "SESSION", session);
+
 			}
 			return token;
 		},
