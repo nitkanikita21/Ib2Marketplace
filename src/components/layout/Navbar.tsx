@@ -38,7 +38,7 @@ export default function NavbarLayout() {
 								<Button flat onPress={() => { router.push("/user"); }}>{session.data.user?.name}</Button>
 							</Navbar.Item>
 							<Navbar.Item>
-								<Button color={"error"} onPress={() => { signOut(); }}>Вихід</Button>
+								<Button color={"error"} onPress={() => { signOut({callbackUrl: "/"}); }}>Вихід</Button>
 							</Navbar.Item>
 						</>
 						:
