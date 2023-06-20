@@ -14,9 +14,9 @@ export default function AdminMenu({ session }: { session: Session }) {
 	/* const user = useReactiveUser(session?.user.id);
 	if (user.isLoading) return <></>;
 	console.log("AdminMenu hook user object: ", user);
-	if (user.data.role != "admin") return <></>; */
+	if (user.data.role != "admin") return <></>;  */
 
-	console.log("AdminMenu session: ", session.user);
+	if (session.user.role != "admin") return <></>;
 
 	return <Dropdown>
 		<Dropdown.Button flat color={"warning"}>Адмін меню</Dropdown.Button>

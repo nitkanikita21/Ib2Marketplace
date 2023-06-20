@@ -1,6 +1,8 @@
 {
     "extends": "next/core-web-vitals",
     "rules": {
-        "indent": "off"
+        "indent": "off",
+        "object-curly-spacing": "off",
+        "quote-props": "off"
     }
 }

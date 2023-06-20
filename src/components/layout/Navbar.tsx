@@ -44,7 +44,7 @@ export default function NavbarLayout() {
 						:
 						<>
 							<Navbar.Item>
-								<Button flat onPress={() => { signIn("discord", { "redirect": false }); }}>Вхід</Button>
+								<Button flat onPress={() => { signIn(); }}>Вхід</Button>
 							</Navbar.Item>
 						</>
 				}

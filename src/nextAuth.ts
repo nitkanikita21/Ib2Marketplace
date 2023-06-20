@@ -17,6 +17,7 @@ export const nextAuth = NextAuth({
 	],
 	"pages": {
 		"signOut": "/signOut",
+		"signIn": "/signIn",
 		"error": "/error"
 	},
 	"callbacks": {
@@ -34,12 +35,13 @@ export const nextAuth = NextAuth({
 			return token;
 		},
 		session({ session, user, token }) {
-			session.user.role = token.role;
-			session.user.id = token.id;
+			/* session.user.role = token.role;
+			session.user.id = token.id; */
+			session.user = user;
 			return session;
 		}
 	},
 	"session": {
-		"strategy": "jwt"
+		"strategy": "database"
 	}
 });
