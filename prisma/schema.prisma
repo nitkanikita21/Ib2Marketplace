@@ -1,6 +1,6 @@
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/d/migrate-shadow
+    provider          = "mysql"
+    url               = env("DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/d/migrate-shadow
     shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -44,9 +44,10 @@ model User {
     role          String    @default("member") // membder, salesman, moderator, admin
     city          City?     @relation(fields: [cityId], references: [id])
     cityId        String?
-    Market        Market[]
-    Account       Account[]
-    Session       Session[]
+    market        Market?
+
+    Account Account[]
+    Session Session[]
 }
 
 model VerificationToken {
@@ -62,7 +63,7 @@ model Market {
     name        String
     description String
     creator     User      @relation(fields: [creatorId], references: [id])
-    creatorId   String
+    creatorId   String    @unique
     products    Product[]
     city        City?     @relation(fields: [cityId], references: [id])
     cityId      String?

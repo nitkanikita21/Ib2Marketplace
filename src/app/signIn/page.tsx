@@ -4,10 +4,12 @@ import { Button, Card, Container, Loading, Text } from "@nextui-org/react";
 import { signIn, signOut } from "next-auth/react";
 import { useEffect } from "react";
 import { BsDiscord } from "react-icons/bs";
+import { useSearchParams } from "next/navigation";
 
 export default function SignIn() {
+	const params = useSearchParams();
 	function loginDiscord() {
-		signIn("discord", { callbackUrl: "/" });
+		signIn("discord", { callbackUrl: params.get("callbackUrl") ?? "/" });
 	}
 	return <>
 		<Container css={{ "minHeight": "100vh" }} fluid display="flex" justify="center" alignItems="center">
@@ -20,7 +22,7 @@ export default function SignIn() {
 				</Card.Header>
 				<Card.Divider />
 				<Card.Body>
-					<Button onPress={loginDiscord} icon={<BsDiscord size={24} />} color="primary">
+					<Button bordered onPress={loginDiscord} icon={<BsDiscord size={24} />}>
 						Discord
 					</Button>
 				</Card.Body>

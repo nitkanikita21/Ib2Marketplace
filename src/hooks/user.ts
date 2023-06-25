@@ -14,6 +14,14 @@ export function useReactiveUser(id: string): { data: { [key: string]: any }, isL
 		"isError": error
 	};
 }
+export function useUserMarket(id: string): { data: { [key: string]: any }, isLoading: boolean, isError: boolean } {
+	const { data, error, isLoading } = useSWR(`/user/${id}/market`, getFetchher);
+	return {
+		data,
+		isLoading,
+		"isError": error
+	};
+}
 
 
 export const useUserValidatorStore = create<{

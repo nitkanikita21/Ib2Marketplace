@@ -3,22 +3,14 @@ import { Badge, Button, Card, Col, Container, Grid, Image, Row, Spacer, Text } f
 export default function ProductCard({
 	title, urlImage, price, isNew = false
 }: {
-    title: string,
-    urlImage: string,
-    price: number,
-    isNew?: boolean | null,
+	title: string,
+	urlImage: string,
+	price: number,
+	isNew?: boolean | null,
 }) {
 	return <Card isHoverable isPressable css={{ "h": "auto", "w": "300px" }} variant="bordered">
-		<Card.Header>
-			<Row justify="space-between">
-				<Text>NitkaNikita</Text>
-				<div>
-					{isNew ? <Badge color={"success"} variant={"flat"}>Нове!</Badge> : <></>}
-					<Badge color={"warning"} variant={"flat"}>Мала кількість</Badge>
-				</div>
-			</Row>
-		</Card.Header>
 		<Card.Divider />
+
 		<Card.Image
 			src={urlImage}
 			objectFit="cover"

@@ -60,6 +60,7 @@ CREATE TABLE `Market` (
     `creatorId` VARCHAR(191) NOT NULL,
     `cityId` VARCHAR(191) NULL,
 
+    UNIQUE INDEX `Market_creatorId_key`(`creatorId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

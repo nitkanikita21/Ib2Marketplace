@@ -17,7 +17,7 @@ export default async function handler(req: NextRequest) {
 
 	console.log("SESSION AAA: ", session);
 
-	if (session.user.role == undefined) {
+	if (session?.user?.role == undefined) {
 		console.log("redirect ", session.role);
 		return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/signIn`);
 	}
